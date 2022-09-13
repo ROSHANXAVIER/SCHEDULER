@@ -16,8 +16,8 @@ function UncontrolledExample() {
           alt="First slide"
         />
         <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <h3>PERSONAL SCHEDULER</h3>
+          <p>Schedule your life . A personal project build out of mernstack , bootstrap.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>

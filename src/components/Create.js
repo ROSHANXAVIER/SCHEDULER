@@ -1,5 +1,5 @@
 import React from 'react'
-import  { useState,useEffect } from "react";
+import  { useState} from "react";
 import axios from 'axios';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -7,10 +7,18 @@ import "react-datepicker/dist/react-datepicker.css";
 function Create() {
     const [title,setTitle]=useState("");
     const [body,setBody]=useState("");
-    const [date, setDate] = useState(new Date());
-    const handleSubmit=()=>{
+    const [date, setDate] = useState();
+    const [result,setResult]=useState("")
+    const handleSubmit=(event)=>{
+        event.preventDefault();
         const dat={title,body,date};
-        axios.post('https://www.digitalocean.com/community/tutorials/react-axios-react',dat).then(res=>{console.log(res)});
+        axios.post('http://localhost:8001/schedulerin',dat).then(res=>{setResult(res.data)
+      setTitle("");
+    setBody("");
+    setDate();
+  setTimeout(()=>{
+    setResult("");
+  },3000)});
     };
   return (
     <div>
@@ -24,6 +32,7 @@ function Create() {
             <DatePicker selected={date} onChange={date => setDate(date)} />
             <button>CREATE !</button>
         </form>
+        <h1>{result}</h1>
     </div>
   )
 }
