@@ -1,5 +1,5 @@
 import React from 'react'
-import  { useState} from "react";
+import  { useState,useEffect,useRef} from "react";
 import axios from 'axios';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -10,6 +10,9 @@ import Form from 'react-bootstrap/Form';
 
 
 function Create() {
+  useEffect(()=>{
+    focus();
+  },[])
     const [title,setTitle]=useState("");
     const [body,setBody]=useState("");
     const [date, setDate] = useState(Date.now());
@@ -25,6 +28,11 @@ function Create() {
     setResult("");
   },3000)});
     };
+    const inputRef=useRef();
+
+    function focus(){
+      inputRef.current.focus()
+    }
   return (
     <div>
         <CardGroup>
@@ -36,7 +44,7 @@ function Create() {
           <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
         <Form.Label>SUBJECT</Form.Label>
-        <Form.Control  type="text" value={title} required onChange={(e)=>{setTitle(e.target.value)}} placeholder="enter sub"/>
+        <Form.Control ref={inputRef}  type="text" value={title} required onChange={(e)=>{setTitle(e.target.value)}} placeholder="enter sub"/>
         <p> </p>
         <Form.Label>DESCRIPTION</Form.Label>
         <Form.Control
@@ -52,7 +60,7 @@ function Create() {
         <DatePicker selected={date} onChange={date => setDate(date)} />
         <p></p>
         <Form.Text className="text-muted">
-          We'll never share your schedule with anyone else.
+          We'll never share your schedules with anyone else
         </Form.Text>
       </Form.Group>
             <Button variant="success" type="submit" className='mt-5'>Create</Button>
