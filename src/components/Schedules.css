@@ -1,0 +1,14 @@
+.col1{
+    background-color: rgb(33,37,41);
+    border-right: 1px dashed white;
+}
+
+
+.head{
+    color: aliceblue;
+    text-align: center;
+    margin: 20px;
+}
+.cardheader{
+    color: black;
+}
