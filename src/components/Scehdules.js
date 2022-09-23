@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { useEffect,useState } from 'react'
+import { useEffect,useState} from 'react'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -11,18 +11,16 @@ import Accordion from 'react-bootstrap/Accordion';
 function Scehdules() {
   const [today,setToday]=useState([]);
   const [up,setUp]=useState([]);
-  
+
   useEffect(()=>{
-    getApi();
-  },[])
-  async function getApi(){
-    await axios.get('http://localhost:8001/scheduleup').then(res=>{setUp((res.data))});
-    await axios.get('http://localhost:8001/scheduletoday').then(res=>{setToday((res.data))});
-  };
+    axios.get('http://localhost:8001/scheduleup').then(res=>{setUp((res.data))});
+    axios.get('http://localhost:8001/scheduletoday').then(res=>{setToday((res.data))});
+  })
+  
+  
   async function handleClick(val){
     const dat={val}
     await axios.post('http://localhost:8001/scheduledelete',dat).then(res=>{console.log(res.data)});
-    getApi();
   }
   
   return (
