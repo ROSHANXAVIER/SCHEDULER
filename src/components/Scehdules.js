@@ -11,13 +11,11 @@ import Accordion from 'react-bootstrap/Accordion';
 function Scehdules() {
   const [today,setToday]=useState([]);
   const [up,setUp]=useState([]);
+  const [loading,setLoading]=useState(true);
 
   useEffect(()=>{
-    const getApi=async ()=>{
-      await axios.get('http://localhost:8001/scheduleup').then(res=>{setUp((res.data))});
-      await axios.get('http://localhost:8001/scheduletoday').then(res=>{setToday((res.data))});
-    }
-    getApi();
+       axios.get('http://localhost:8001/scheduleup').then(res=>{setUp((res.data))});
+       axios.get('http://localhost:8001/scheduletoday').then(res=>{setToday((res.data));setLoading(false);});
   })
   
   
@@ -27,6 +25,7 @@ function Scehdules() {
   }
   
   return (
+    <div>
     <Container fluid >
       <Row>
         <Col className='col1' border="light"><div>
@@ -79,6 +78,8 @@ function Scehdules() {
           </div></Col>
       </Row>
     </Container>  
+    <h1>{loading && <div>LOADING.....</div>}</h1>
+    </div>
   )
 }
 
