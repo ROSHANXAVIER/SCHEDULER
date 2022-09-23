@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { useEffect,useState} from 'react'
+import { useEffect,useState,useCallback } from 'react'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -13,8 +13,11 @@ function Scehdules() {
   const [up,setUp]=useState([]);
 
   useEffect(()=>{
-    axios.get('http://localhost:8001/scheduleup').then(res=>{setUp((res.data))});
-    axios.get('http://localhost:8001/scheduletoday').then(res=>{setToday((res.data))});
+    const getApi=async ()=>{
+      await axios.get('http://localhost:8001/scheduleup').then(res=>{setUp((res.data))});
+      await axios.get('http://localhost:8001/scheduletoday').then(res=>{setToday((res.data))});
+    }
+    getApi();
   })
   
   
