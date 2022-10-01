@@ -6,6 +6,7 @@ import Home from './components/Home';
 import React from 'react';
 import Create from './components/Create';
 import Scehdules from './components/Scehdules';
+import Update from './components/Update';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route  path="/" exact element={<Home/>}/>
             <Route path='/create' exact element={<Create/>}/>
             <Route path='/schedules' exact element={<Scehdules/>}/>
+            <Route path='/update/:id' exact element={<Update/>}/>
           </Routes> 
     </BrowserRouter>
   );

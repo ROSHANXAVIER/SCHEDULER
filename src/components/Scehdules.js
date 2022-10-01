@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 import './Schedules.css'
 import Card from 'react-bootstrap/Card';
 import Accordion from 'react-bootstrap/Accordion';
-
+import {Link} from 'react-router-dom'
 function Scehdules() {
   const [today,setToday]=useState([]);
   const [up,setUp]=useState([]);
@@ -43,7 +43,7 @@ function Scehdules() {
           {item.body}
         </Accordion.Body>
         <button type="button" class="btn btn-outline-dark btn-sm" value={item.title} onClick={()=>{handleClick(item.title)}}>DELETE</button>
-        <button type="button" class="btn btn-outline-dark btn-sm ">UPDATE</button>
+        <Link to={'/update/'+item._id}><button type="button" class="btn btn-outline-dark btn-sm ">UPDATE</button></Link>
       </Accordion.Item>  
     </Accordion></Card.Header>
     </Card>
@@ -62,12 +62,13 @@ function Scehdules() {
       <Card.Header className='cardheader'>
       <Accordion defaultActiveKey="0" flush>
       <Accordion.Item >
+      {item.date}
         <Accordion.Header><Card.Title>{item.title}</Card.Title></Accordion.Header>
         <Accordion.Body>
           {item.body}
         </Accordion.Body>
         <button type="button" class="btn btn-outline-dark btn-sm" value={item.title} onClick={()=>{handleClick(item.title)}}>DELETE</button>
-        <button type="button" class="btn btn-outline-dark btn-sm ">UPDATE</button>
+        <Link to={'/update/'+item._id}><button type="button" class="btn btn-outline-dark btn-sm ">UPDATE</button></Link>
       </Accordion.Item>  
     </Accordion></Card.Header>
     </Card>
