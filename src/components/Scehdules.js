@@ -7,7 +7,9 @@ import Col from 'react-bootstrap/Col';
 import './Schedules.css'
 import Card from 'react-bootstrap/Card';
 import Accordion from 'react-bootstrap/Accordion';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import Spinner from 'react-bootstrap/Spinner';
+
 function Scehdules() {
   const [today,setToday]=useState([]);
   const [up,setUp]=useState([]);
@@ -79,7 +81,8 @@ function Scehdules() {
           </div></Col>
       </Row>
     </Container>  
-    <h1>{loading && <div>LOADING.....</div>}</h1>
+    <h1>{loading && <div className="head"><Spinner variant="success" animation="grow"  />
+</div>}</h1>
     </div>
   )
 }
