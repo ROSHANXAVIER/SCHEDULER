@@ -9,7 +9,7 @@ export default function Navbar() {
     <Link to="/" className="active">HOME</Link>
     <Link to='/create'>Create</Link>
     <Link to='/schedules'>Schedules</Link>
-    <Link to='/customemail'>E-Remainder</Link>
+    <Link to='/customemail'>E-Reminder</Link>
   </div>
   )
 }

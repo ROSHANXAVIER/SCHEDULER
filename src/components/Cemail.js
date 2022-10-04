@@ -9,10 +9,14 @@ import { useState } from 'react';
 import axios from 'axios'
 import Spinner from 'react-bootstrap/Spinner';
 import './Cemail.css';
+import { useNavigate } from 'react-router-dom';
+
+
 function Cemail() {
     const variant="success";
-    const [email,setEmail]=useState();
-    const [pass,setPass]=useState();
+    const navigate=useNavigate();
+    const [toemail,setToemail]=useState();
+    
     const [sub,setSub]=useState();
     const [des,setDes]=useState();
     const [result,setResult]=useState();
@@ -20,16 +24,14 @@ function Cemail() {
     async function handleSubmit(event){
         event.preventDefault();
         setloading(true);
-        const dat={email,pass,sub,des};
-        await axios.post('http://localhost:8001/scheduin',dat).then(res=>{setResult(res.data);
-      setEmail("");
-    setPass("");
-    setSub("");
-    setDes("");
+        const dat={toemail,sub,des};
+        await axios.post('http://localhost:8001/cemail',dat).then(res=>{setResult(res.data);
   setTimeout(()=>{
     setResult("");
     setloading(false);
-  },3000)});
+    window.location.reload(false);
+  },3000)
+});
     };
     
 
@@ -43,6 +45,7 @@ function Cemail() {
       <Row>
         <Col></Col>
         <Col><Card
+        border='dark'
           bg={variant.toLowerCase()}
           key={variant}
           text={variant.toLowerCase() === 'light' ? 'dark' : 'white'}
@@ -52,21 +55,17 @@ function Cemail() {
           <Card.Header>EMAIL</Card.Header>
           <Card.Body>
           <Form onSubmit={handleSubmit}>
+     
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email"  onChange={(e)=>{setEmail(e.target.value)}}/>
+        <Form.Label>To</Form.Label>
+        <Form.Control type="email" placeholder="Enter email"  onChange={(e)=>{setToemail(e.target.value)}}/>
         
       </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" onChange={(e)=>{setPass(e.target.value)}}/>
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
+      <Form.Group className="mb-3" >
         <Form.Label>Subject</Form.Label>
         <Form.Control type="text" placeholder="head"  onChange={(e)=>{setSub(e.target.value)}}/>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
+      <Form.Group className="mb-3" >
         <Form.Label>Description</Form.Label>
         <Form.Control as="textarea" placeholder="description"  onChange={(e)=>{setDes(e.target.value)}}/>
       </Form.Group>
