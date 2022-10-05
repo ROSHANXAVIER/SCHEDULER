@@ -9,6 +9,7 @@ import Card from 'react-bootstrap/Card';
 import Accordion from 'react-bootstrap/Accordion';
 import {Link} from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner';
+import { GoMail } from "react-icons/go";
 
 function Scehdules() {
   const [today,setToday]=useState([]);
@@ -43,8 +44,10 @@ function Scehdules() {
         <Accordion.Header><Card.Title>{item.title}</Card.Title></Accordion.Header>
         <Accordion.Body>
           {item.body}
+          <p> </p>
+          <Link to={'/emailit/'+item._id}><button type="button" ><GoMail/></button></Link>
         </Accordion.Body>
-        <button type="button" class="btn btn-outline-dark btn-sm" value={item.title} onClick={()=>{handleClick(item.title)}}>DELETE</button>
+        <button  type="button" class="btn btn-outline-dark btn-sm" value={item.title} onClick={()=>{handleClick(item.title)}}>DELETE</button>
         <Link to={'/update/'+item._id}><button type="button" class="btn btn-outline-dark btn-sm ">UPDATE</button></Link>
       </Accordion.Item>  
     </Accordion></Card.Header>
@@ -68,8 +71,11 @@ function Scehdules() {
         <Accordion.Header><Card.Title>{item.title}</Card.Title></Accordion.Header>
         <Accordion.Body>
           {item.body}
+          <p> </p>
+          <Link to={'/emailit/'+item._id}><button type="button" ><GoMail/></button></Link>
         </Accordion.Body>
         <button type="button" class="btn btn-outline-dark btn-sm" value={item.title} onClick={()=>{handleClick(item.title)}}>DELETE</button>
+        
         <Link to={'/update/'+item._id}><button type="button" class="btn btn-outline-dark btn-sm ">UPDATE</button></Link>
       </Accordion.Item>  
     </Accordion></Card.Header>

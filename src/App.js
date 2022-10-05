@@ -8,6 +8,7 @@ import Create from './components/Create';
 import Scehdules from './components/Scehdules';
 import Update from './components/Update';
 import Cemail from './components/Cemail';
+import Emailit from './components/Emailit';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path='/create' exact element={<Create/>}/>
             <Route path='/schedules' exact element={<Scehdules/>}/>
             <Route path='/update/:id' exact element={<Update/>}/>
+            <Route path='/emailit/:id' exact element={<Emailit/>}/>
             <Route path='/customemail' exact element={<Cemail/>}/>
           </Routes> 
     </BrowserRouter>
