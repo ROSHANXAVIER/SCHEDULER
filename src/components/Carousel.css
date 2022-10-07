@@ -5,6 +5,10 @@
     height:max-content;
     width: 100%;
 }
+.colr{
+    color: green;
+    margin: 10px;
+}
 
 @media only screen and (max-width: 900px) {
     .carousel-caption {
@@ -14,3 +18,4 @@
         width: auto;
     }
   }
+

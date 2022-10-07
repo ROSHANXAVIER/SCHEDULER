@@ -1,7 +1,9 @@
 import {Carousel} from 'react-bootstrap';
 import React, { useState } from 'react';
 import "./Carousel.css";
-
+import { FaGithub,FaLinkedin} from "react-icons/fa";
+import { SiGmail } from "react-icons/si";
+import { BsFillTelephoneFill } from "react-icons/bs";
 function UncontrolledExample() {
     const [index, setIndex] = useState(0);
 
@@ -29,8 +31,11 @@ function UncontrolledExample() {
         />
 
         <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h3>Contact Creator</h3>
+          <a href='/'><FaLinkedin className='colr' onClick={()=>{window.open("https://www.linkedin.com/in/roshan-xavier-1ab097214/")}}/></a>
+          <a href='/'><SiGmail className='colr' onClick={()=>{window.open("mailto:rxgody@gmail.com")}}/></a>
+          <a href='/'><FaGithub className='colr' onClick={()=>{window.open("https://github.com/ROSHANXAVIER")}}/></a>
+          <a href="tel:9447567495"><BsFillTelephoneFill className='colr'/></a>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
