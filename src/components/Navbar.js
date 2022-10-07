@@ -8,8 +8,8 @@ export default function Navbar() {
   <div className="topnav">
     <Link to="/" className="active">HOME</Link>
     <Link to='/create'>Create</Link>
-    <Link to='/schedules'>Schedules</Link>
-    <Link to='/customemail'>E-Reminder</Link>
+    <Link to='/schedules'>Events</Link>
+    <Link to='/customemail'>E-Remind</Link>
   </div>
   )
 }
