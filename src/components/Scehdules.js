@@ -17,14 +17,14 @@ function Scehdules() {
   const [loading,setLoading]=useState(true);
 
   useEffect(()=>{
-       axios.get('http://localhost:8001/scheduleup').then(res=>{setUp((res.data))});
-       axios.get('http://localhost:8001/scheduletoday').then(res=>{setToday((res.data));setLoading(false);});
+       axios.get('https://backend-scheduler.vercel.app/scheduleup').then(res=>{setUp((res.data))});
+       axios.get('https://backend-scheduler.vercel.app/scheduletoday').then(res=>{setToday((res.data));setLoading(false);});
   })
   
   
   async function handleClick(val){
     const dat={val}
-    await axios.post('http://localhost:8001/scheduledelete',dat).then(res=>{console.log(res.data)});
+    await axios.post('https://backend-scheduler.vercel.app/scheduledelete',dat).then(res=>{console.log(res.data)});
   }
   
   return (

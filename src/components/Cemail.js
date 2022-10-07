@@ -25,7 +25,7 @@ function Cemail() {
         event.preventDefault();
         setloading(true);
         const dat={toemail,sub,des};
-        await axios.post('http://localhost:8001/cemail',dat).then(res=>{setResult(res.data);
+        await axios.post('https://backend-scheduler.vercel.app/cemail',dat).then(res=>{setResult(res.data);
   setTimeout(()=>{
     setResult("");
     setloading(false);

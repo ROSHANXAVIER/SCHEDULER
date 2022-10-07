@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-
+import Spinner from 'react-bootstrap/Spinner';
 
 function Create() {
   useEffect(()=>{
@@ -17,13 +17,16 @@ function Create() {
     const [body,setBody]=useState("");
     const [date, setDate] = useState(Date.now());
     const [result,setResult]=useState("")
-    const handleSubmit=(event)=>{
+    const [loading,setloading]=useState(false);
+    async function handleSubmit(event){
         event.preventDefault();
+        setloading(true);
         const dat={title,body,date};
-        axios.post('http://localhost:8001/schedulerin',dat).then(res=>{setResult(res.data)
+        await axios.post('https://backend-scheduler.vercel.app/schedulerin',dat).then(res=>{setResult(res.data)
       setTitle("");
     setBody("");
     setDate();
+    setloading(false);
   setTimeout(()=>{
     setResult("");
   },3000)});
@@ -63,7 +66,12 @@ function Create() {
           We'll never share your schedules with anyone else
         </Form.Text>
       </Form.Group>
-            <Button variant="success" type="submit" className='mt-5'>Create</Button>
+      <h1>{(!loading) && <div><Button variant="success" type="submit">
+        Create
+      </Button>
+</div>}</h1>
+      <h1>{loading && <div><Spinner variant="success" animation="grow"  />
+</div>}</h1>
         </Form>
           </Card.Text>
         </Card.Body>

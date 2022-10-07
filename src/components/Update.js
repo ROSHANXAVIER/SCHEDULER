@@ -23,13 +23,13 @@ function Update() {
     const navigate=useNavigate();
     useEffect(()=>{
         console.log(params);
-        axios.post('http://localhost:8001/update',params).then(res=>{setUpd((res.data))});
+        axios.post('https://backend-scheduler.vercel.app/update',params).then(res=>{setUpd((res.data))});
     },[params])
     const handleSubmit=(event)=>{
       event.preventDefault();
       const ids=upd._id;
       const dat={ids,title,body,date};
-      axios.post('http://localhost:8001/updateres',dat).then(res=>{setResult(res.data)
+      axios.post('https://backend-scheduler.vercel.app/updateres',dat).then(res=>{setResult(res.data)
 setTimeout(()=>{
   setResult("");
   navigate('/schedules');
