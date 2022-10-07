@@ -24,7 +24,7 @@ function Emailit() {
     const [loading,setloading]=useState(false);
     const navigate=useNavigate();
     useEffect(()=>{
-        axios.post('http://localhost:8001/update',params).then(res=>{setUpd((res.data))});
+        axios.post('https://backend-scheduler.vercel.app/update',params).then(res=>{setUpd((res.data))});
     },[params]
     )
     
