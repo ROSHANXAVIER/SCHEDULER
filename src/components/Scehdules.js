@@ -10,21 +10,29 @@ import Accordion from 'react-bootstrap/Accordion';
 import {Link} from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner';
 import { GoMail } from "react-icons/go";
-
+import jwt from 'jwt-decode';
 function Scehdules() {
   const [today,setToday]=useState([]);
   const [up,setUp]=useState([]);
   const [loading,setLoading]=useState(true);
 
   useEffect(()=>{
-       axios.get('https://backend-scheduler.vercel.app/scheduleup').then(res=>{setUp((res.data))});
-       axios.get('https://backend-scheduler.vercel.app/scheduletoday').then(res=>{setToday((res.data));setLoading(false);});
+    const token=localStorage.getItem('token')
+    if(token){
+      const user=jwt(token);
+      if(!user){
+        localStorage.removeItem('token')
+        window.location.href='/'
+      }
+    }
+       axios.get('http://localhost:8001/scheduleup',{headers:{'Authorization':`Bearer ${token}`,}}).then(res=>{setUp((res.data))});
+       axios.get('http://localhost:8001/scheduletoday',{headers:{'Authorization':`Bearer ${token}`,}}).then(res=>{setToday((res.data));setLoading(false);});
   })
   
   
   async function handleClick(val){
     const dat={val}
-    await axios.post('https://backend-scheduler.vercel.app/scheduledelete',dat).then(res=>{console.log(res.data)});
+    await axios.post('https://backend-scheduler.vercel.app/scheduledelete',dat,).then(res=>{console.log(res.data)});
   }
   
   return (

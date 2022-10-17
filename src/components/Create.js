@@ -8,9 +8,17 @@ import CardGroup from 'react-bootstrap/CardGroup';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Spinner from 'react-bootstrap/Spinner';
-
+import jwt from 'jwt-decode';
 function Create() {
   useEffect(()=>{
+    const token=localStorage.getItem('token')
+    if(token){
+      const user=jwt(token);
+      if(!user){
+        localStorage.removeItem('token')
+        window.location.href='/'
+      }
+    }
     focus();
   },[])
     const [title,setTitle]=useState("");
@@ -22,7 +30,8 @@ function Create() {
         event.preventDefault();
         setloading(true);
         const dat={title,body,date};
-        await axios.post('https://backend-scheduler.vercel.app/schedulerin',dat).then(res=>{setResult(res.data)
+        const token=localStorage.getItem('token')
+        await axios.post('http://localhost:8001/schedulerin',dat,{headers:{'Authorization':`Bearer ${token}`,}}).then(res=>{setResult(res.data)
       setTitle("");
     setBody("");
     setDate();

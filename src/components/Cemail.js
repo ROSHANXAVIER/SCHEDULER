@@ -5,15 +5,15 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import axios from 'axios'
 import Spinner from 'react-bootstrap/Spinner';
 import './Cemail.css';
-
+import jwt from 'jwt-decode';
 
 
 function Cemail() {
-    const variant="success";
+    const variant="dark";
   
     const [toemail,setToemail]=useState();
     
@@ -21,6 +21,16 @@ function Cemail() {
     const [des,setDes]=useState();
     const [result,setResult]=useState();
     const [loading,setloading]=useState(false);
+    useEffect(()=>{
+      const token=localStorage.getItem('token')
+      if(token){
+        const user=jwt(token);
+        if(!user){
+          localStorage.removeItem('token')
+          window.location.href='/'
+        }
+      }
+    },[])
     async function handleSubmit(event){
         event.preventDefault();
         setloading(true);
@@ -70,11 +80,11 @@ function Cemail() {
         <Form.Control as="textarea" placeholder="description"  onChange={(e)=>{setDes(e.target.value)}}/>
       </Form.Group>
       
-      <h1>{(!loading) && <div><Button variant="dark" type="submit">
+      <h1>{(!loading) && <div><Button variant="success" type="submit">
         Send
       </Button>
 </div>}</h1>
-      <h1>{loading && <div><Spinner variant="dark" animation="grow"  />
+      <h1>{loading && <div><Spinner variant="success" animation="grow"  />
 </div>}</h1>
 
     </Form>

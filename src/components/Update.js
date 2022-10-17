@@ -9,7 +9,7 @@ import CardGroup from 'react-bootstrap/CardGroup';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
-
+import jwt from 'jwt-decode';
 
 
 
@@ -22,6 +22,14 @@ function Update() {
     const params=useParams();
     const navigate=useNavigate();
     useEffect(()=>{
+      const token=localStorage.getItem('token')
+      if(token){
+        const user=jwt(token);
+        if(!user){
+          localStorage.removeItem('token')
+          window.location.href='/'
+        }
+      }
         console.log(params);
         axios.post('https://backend-scheduler.vercel.app/update',params).then(res=>{setUpd((res.data))});
     },[params])

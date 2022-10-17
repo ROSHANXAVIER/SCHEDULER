@@ -11,7 +11,7 @@ import axios from 'axios'
 import Spinner from 'react-bootstrap/Spinner';
 import {useParams} from "react-router";
 import { useNavigate } from 'react-router-dom';
-
+import jwt from 'jwt-decode';
 function Emailit() {
     const inputRef=useRef(null);
     const inputRefs=useRef(null);
@@ -24,6 +24,14 @@ function Emailit() {
     const [loading,setloading]=useState(false);
     const navigate=useNavigate();
     useEffect(()=>{
+      const token=localStorage.getItem('token')
+      if(token){
+        const user=jwt(token);
+        if(!user){
+          localStorage.removeItem('token')
+          window.location.href='/'
+        }
+      }
         axios.post('https://backend-scheduler.vercel.app/update',params).then(res=>{setUpd((res.data))});
     },[params]
     )
