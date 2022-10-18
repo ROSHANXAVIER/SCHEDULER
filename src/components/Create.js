@@ -31,11 +31,17 @@ function Create() {
         setloading(true);
         const dat={title,body,date};
         const token=localStorage.getItem('token')
-        await axios.post('http://localhost:8001/schedulerin',dat,{headers:{'Authorization':`Bearer ${token}`,}}).then(res=>{setResult(res.data)
+        await axios.post('https://backend-scheduler.vercel.app/schedulerin',dat,{headers:{'Authorization':`Bearer ${token}`,}}).then(res=>{setResult(res.data)
       setTitle("");
     setBody("");
     setDate();
     setloading(false);
+    if(res.data==="Not authorized , please login again"){
+      setTimeout(()=>{
+        localStorage.removeItem('token')
+        window.location.href='/'
+      },2000)
+    }
   setTimeout(()=>{
     setResult("");
   },3000)});

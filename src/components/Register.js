@@ -16,7 +16,7 @@ async function handleClick(e){
   e.preventDefault()
   const dat={name,email,password}
   if(validator.isEmail(email)){
-    await axios.post('http://localhost:8001/register',dat).then(async res=>{
+    await axios.post('https://backend-scheduler.vercel.app/register',dat).then(async res=>{
   console.log(res)
     if(res.status===201){
       toast("Welcome");

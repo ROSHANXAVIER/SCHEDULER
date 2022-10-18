@@ -25,8 +25,12 @@ function Scehdules() {
         window.location.href='/'
       }
     }
-       axios.get('http://localhost:8001/scheduleup',{headers:{'Authorization':`Bearer ${token}`,}}).then(res=>{setUp((res.data))});
-       axios.get('http://localhost:8001/scheduletoday',{headers:{'Authorization':`Bearer ${token}`,}}).then(res=>{setToday((res.data));setLoading(false);});
+       axios.get('https://backend-scheduler.vercel.app/scheduleup',{headers:{'Authorization':`Bearer ${token}`,}}).then(res=>{setUp((res.data));
+      if(res.status===201){
+        localStorage.removeItem('token')
+        window.location.href='/'
+      }});
+       axios.get('https://backend-scheduler.vercel.app/scheduletoday',{headers:{'Authorization':`Bearer ${token}`,}}).then(res=>{setToday((res.data));setLoading(false);});
   })
   
   

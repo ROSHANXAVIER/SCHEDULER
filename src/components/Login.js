@@ -17,7 +17,7 @@ props.funcNav(false);
 async function handleClick(e){
     e.preventDefault();
     const dat={email,password};
-    await axios.post('http://localhost:8001/login',dat).then(res=>{
+    await axios.post('https://backend-scheduler.vercel.app/login',dat).then(res=>{
   if(res.status===200){
     toast("Login successful");
     localStorage.setItem('token',res.data.token);
