@@ -5,15 +5,18 @@ import validator from "validator";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import { useNavigate } from 'react-router-dom';
+import Spinner from 'react-bootstrap/Spinner';
 
 function Register(props) {
   const [name,setName]=useState("");
   const [email,setEmail]=useState("");
   const [password,setPass]=useState("");
+  const [loading,setloading]=useState(false);
   const navigate=useNavigate();
   props.funcNav(false);
 async function handleClick(e){
   e.preventDefault()
+  setloading(true);
   const dat={name,email,password}
   if(validator.isEmail(email)){
     await axios.post('https://backend-scheduler.vercel.app/register',dat).then(async res=>{
@@ -25,12 +28,17 @@ async function handleClick(e){
       },2000)
     }
     else if(res.status===200){
-      toast(res.data);
+      toast("user exists in this email");
+      setloading(false);
     }
     else if(res.status===400){
       toast('Invalid user data');
+      setloading(false);
     }
-  })}
+  })}else{
+    toast("Enter proper email!!");
+    setloading(false);
+  }
   }
 
 
@@ -53,9 +61,12 @@ async function handleClick(e){
         <input type="password" required value={password} onChange={(e)=>{setPass(e.target.value)}}/>
         <label>Password</label>
       </div>
-      <button className='n' >
+      <div> {(!loading) && <div><button className='n'>
         Submit
       </button>
+</div>}</div>
+<h1>{loading && <div><Spinner variant="dark" animation="grow"  />
+</div>}</h1>
     </form> 
   </div>
   <ToastContainer

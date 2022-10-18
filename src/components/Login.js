@@ -6,26 +6,29 @@ import {useState} from 'react';
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
-import { useNavigate } from 'react-router-dom';
+import Spinner from 'react-bootstrap/Spinner';
 
 function Login(props) {
 
 const [email,setEmail]=useState("");
 const [password,setPass]=useState("");
-
+const [loading,setloading]=useState(false);
 props.funcNav(false);
 async function handleClick(e){
     e.preventDefault();
+    setloading(true);
     const dat={email,password};
     await axios.post('https://backend-scheduler.vercel.app/login',dat).then(res=>{
   if(res.status===200){
     toast("Login successful");
+    
     localStorage.setItem('token',res.data.token);
     console.log(localStorage.getItem('token'));
     setTimeout(()=>{
       window.location.href='/home';
     },2000)
   }else{
+    setloading(false);
     toast("Invalid credentials")
   }})
 }
@@ -43,9 +46,12 @@ async function handleClick(e){
         <input type="password" value={password} required onChange={(e)=>{setPass(e.target.value)}}/>
         <label>Password</label>
       </div>
-      <button className='n'>
+      <div> {(!loading) && <div><button className='n'>
         Submit
       </button>
+</div>}</div>
+<h1>{loading && <div><Spinner variant="dark" animation="grow"  />
+</div>}</h1>
     </form>
     <p></p>
     <div className='b'><p className='w'>Haven't Registerd yet? <Link to='/register'><Button size="sm" variant="outline-light">Register</Button></Link></p></div>
