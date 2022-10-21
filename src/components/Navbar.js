@@ -17,7 +17,7 @@ export default function Navbar() {
     <Link to='/create'>Create</Link>
     <Link to='/schedules'>Events</Link>
     <Link to='/customemail'>E-Remind</Link>
-    <Button className='hib' size="lg" variant="outline-dark" onClick={handleClick}>{<PoweroffOutlined />}</Button>
+    <Button className='hib' size="lg" variant="outline-light" onClick={handleClick}>{<PoweroffOutlined />}</Button>
   </div>
   )
 }
