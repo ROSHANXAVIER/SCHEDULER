@@ -15,7 +15,7 @@ import jwt from 'jwt-decode';
 function Emailit() {
     const inputRef=useRef(null);
     const inputRefs=useRef(null);
-    const variant="success";
+    const variant="dark";
     const [upd,setUpd]=useState([]);
     const [toemail,setToemail]=useState();
     const params=useParams();
@@ -60,7 +60,7 @@ function Emailit() {
       <Row>
         <Col></Col>
         <Col><Card
-        border='dark'
+        border='success'
           bg={variant.toLowerCase()}
           key={variant}
           text={variant.toLowerCase() === 'light' ? 'dark' : 'white'}
@@ -85,11 +85,11 @@ function Emailit() {
         <Form.Control as="textarea" defaultValue={upd.body} required ref={inputRefs}/>
       </Form.Group>
       
-      <h1>{(!loading) && <div><Button variant="dark" type="submit">
+      <h1>{(!loading) && <div><Button variant="success" type="submit">
         Send
       </Button>
 </div>}</h1>
-      <h1>{loading && <div><Spinner variant="dark" animation="grow"  />
+      <h1>{loading && <div><Spinner variant="success" animation="grow"  />
 </div>}</h1>
 
     </Form>

@@ -55,7 +55,7 @@ function Cemail() {
       <Row>
         <Col></Col>
         <Col><Card
-        border='dark'
+        border="success"
           bg={variant.toLowerCase()}
           key={variant}
           text={variant.toLowerCase() === 'light' ? 'dark' : 'white'}
