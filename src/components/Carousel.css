@@ -12,8 +12,16 @@
 
 .dcolr{
     color: green;
+    padding-bottom: 50px;
 }
 
+.dcolrs{
+    color: green;
+    padding-bottom: 160px; 
+}
+.dcolr2{
+    color: green;
+}
 .lcolr{
     color: green;
 }
