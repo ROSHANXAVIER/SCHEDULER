@@ -36,7 +36,7 @@ function UncontrolledExample() {
   />
   <Carousel.Caption  >
     <h3 className='dcolr'>PERSONAL SCHEDULER</h3>
-    <p className='dcolrs'>Schedule your life . A personal project build out of MERN stack , bootstrap.</p>
+    <p className='lcolr'>Schedule your life . A personal project build out of MERN stack , bootstrap.</p>
   </Carousel.Caption>
 </Carousel.Item>}
       {!isDark && <Carousel.Item>
