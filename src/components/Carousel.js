@@ -31,7 +31,7 @@ function UncontrolledExample() {
 {isDark&& <Carousel.Item>
   <img
     className="imgs"
-    src="https://images.unsplash.com/photo-1544377137-b01b843568a0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1228&q=80"
+    src={require("./images/first.jpg")}
     alt="First slide"
   />
   <Carousel.Caption  >
@@ -57,7 +57,7 @@ function UncontrolledExample() {
       {isDark && <Carousel.Item>
         <img
           className="imgs"
-          src="https://images.unsplash.com/photo-1544377208-215a63786183?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1276&q=80"
+          src={require("./images/sec.jpg")}
           alt="Second slide"
         />
 
