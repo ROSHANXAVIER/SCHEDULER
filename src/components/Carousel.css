@@ -10,6 +10,14 @@
     margin: 10px;
 }
 
+.dcolr{
+    color: green;
+}
+
+.lcolr{
+    color: green;
+}
+
 @media only screen and (max-width: 900px) {
     .carousel-caption {
       margin-bottom: 0px;
