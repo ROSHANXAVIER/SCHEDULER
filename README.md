@@ -3,4 +3,5 @@ The app lets you create schedule of events . It displays todays and upcoming eve
 #The backend of the app is made using Node.js , with express as frame work and Mongo db as database. The UI is build using bootstrap and CSS. MERN Authentication is done and also JWT token is used for secure transfer of data.
 #The app is hosted here : https://rx-scheduler.vercel.app/
 
-![image](https://user-images.githubusercontent.com/84636207/194614081-b43aebc3-3cbc-46cb-83dd-12661a47a8f9.png)
+![image](https://user-images.githubusercontent.com/84636207/197865098-17930786-b9ce-46d0-bf7b-980845a0e8d2.png)
+
