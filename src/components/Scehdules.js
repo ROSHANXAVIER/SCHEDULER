@@ -13,7 +13,6 @@ import { GoMail } from "react-icons/go";
 import jwt from 'jwt-decode';
 
 
-
 function Scehdules() {
   const [today,setToday]=useState([]);
   const [up,setUp]=useState([]);
