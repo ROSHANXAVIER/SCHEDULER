@@ -11,15 +11,19 @@ import {Link} from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner';
 import { GoMail } from "react-icons/go";
 import jwt from 'jwt-decode';
+import $ from 'jquery';
 
 
 function Scehdules() {
   const [today,setToday]=useState([]);
   const [up,setUp]=useState([]);
   const [loading,setLoading]=useState(true);
+  const [del,setDel]=useState(false);
+  const [style,setStyle]=useState("button")
 
   useEffect(()=>{
     const token=localStorage.getItem('token')
+    console.log("hello")
     if(token){
       const user=jwt(token);
       if(!user){
@@ -33,18 +37,29 @@ function Scehdules() {
         window.location.href='/'
       }});
        axios.get('https://backend-scheduler.vercel.app/scheduletoday',{headers:{'Authorization':`Bearer ${token}`,}}).then(res=>{setToday((res.data));setLoading(false);});
-  })
-  
+  });
+  const h=()=>{
+    setStyle("button");
+    setTimeout(()=>{
+      setStyle("buttons");
+    },2000)
+    setTimeout(()=>{
+      setDel(false);
+    },5000)
+  }
   
   async function handleClick(val){
     const dat={val}
-    await axios.post('https://backend-scheduler.vercel.app/scheduledelete',dat,).then(res=>{console.log(res.data)});
+    setDel(true)
+    await h();
+    await axios.post('https://backend-scheduler.vercel.app/scheduledelete',dat,).then(res=>{setDel(false)});
+    setDel(false);
   }
   
   return (
     <div>
     <Container fluid >
-      <Row>
+      {!del && <Row>
         <Col className='col1' border="light"><div>
           <h1 className='head'>TODAYS</h1>
           <div>
@@ -88,7 +103,7 @@ function Scehdules() {
           <p> </p>
           <Link to={'/emailit/'+item._id}><button type="button" ><GoMail/></button></Link>
         </Accordion.Body>
-        <button type="button" class="btn btn-outline-dark btn-sm" value={item.title} onClick={()=>{handleClick(item.title)}}>DELETE</button>
+        <button type="button"  value={item.title} class="btn btn-outline-dark btn-sm " onClick={()=>{handleClick(item.title)}}>DELETE</button>
         
         <Link to={'/update/'+item._id}><button type="button" class="btn btn-outline-dark btn-sm ">UPDATE</button></Link>
       </Accordion.Item>  
@@ -99,10 +114,24 @@ function Scehdules() {
       }
           </div>
           </div></Col>
-      </Row>
+      </Row>}
     </Container>  
     <h1>{loading && <div className="head"><Spinner variant="success" animation="grow"  />
 </div>}</h1>
+<h1>{del &&<div className='centrer'> <button onClick={h} class={style}>
+    <div class="trash">
+        <div class="top">
+            <div class="paper"></div>
+        </div>
+        <div class="box"></div>
+        <div class="check">
+            <svg viewBox="0 0 8 6">
+                <polyline points="1 3.4 2.71428571 5 7 1"></polyline>
+            </svg>
+        </div>
+    </div>
+    <span>Deleting..</span>
+</button></div>}</h1>
     </div>
   )
 }
